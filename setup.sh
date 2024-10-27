@@ -11,15 +11,13 @@ locale-gen
 
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
-# pacman mirror
-echo 'Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
-pacman-key --init && pacman-key --populate
-pacman -Sy --noconfirm archlinux-keyring && pacman -Su --noconfirm
-
-# pacman DisableSandbox
+# pacman
 sed -i \
 -e "s/^#DisableSandbox/DisableSandbox/" \
 /etc/pacman.conf
+echo 'Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+pacman-key --init && pacman-key --populate
+pacman -Sy --noconfirm archlinux-keyring && pacman -Su --noconfirm
 
 # uninstall packages
 pacman -R --noconfirm arch-install-scripts
