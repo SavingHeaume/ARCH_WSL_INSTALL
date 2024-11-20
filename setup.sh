@@ -34,20 +34,3 @@ passwd $username
 
 # default user, enable systemd
 echo -e "[user]\ndefault=$username\n[boot]\nsystemd=true" > /etc/wsl.conf
-
-# docker
-pacman -S --needed --noconfirm docker
-usermod -aG docker $username
-
-mkdir /etc/docker
-
-MIRROR=http://hub-mirror.c.163.com
-cat << EOF > /etc/docker/daemon.json
-{
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "registry-mirrors": ["$MIRROR"]
-}
-EOF

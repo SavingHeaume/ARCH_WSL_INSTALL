@@ -3,9 +3,9 @@
 cd /d %~dp0
 
 set DISTRO_NAME=Arch
-set IMAGE_PATH=C:\arch-image\archlinux-bootstrap.tar
+set IMAGE_PATH=D:\WSL\archlinux-bootstrap.tar
 
-wsl --import %DISTRO_NAME% C:\%DISTRO_NAME% %IMAGE_PATH%
+wsl --import %DISTRO_NAME% D:\WSL\Arch  %IMAGE_PATH%
 if %ERRORLEVEL% NEQ 0 (pause & exit /b %ERRORLEVEL%)
 
 wsl -d %DISTRO_NAME% -u root ./setup.sh
